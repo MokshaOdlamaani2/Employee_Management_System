@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
@@ -6,10 +5,22 @@ require('dotenv').config();
 
 const app = express();
 
-// ✅ Secure CORS config
+const allowedOriginPattern = /^https:\/\/employee-management-system-azure-eight\.vercel\.app(\/.*)?$/;
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin) {
+      // Allow non-browser clients like Postman or curl
+      return callback(null, true);
+    }
+
+    if (allowedOriginPattern.test(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'), false);
+    }
+  },
+  credentials: true,
 }));
 
 app.use(express.json());
