@@ -1,0 +1,325 @@
+
+[
+
+  {
+
+    "name": "Alice Sharma",
+
+    "email": "alice.sharma@example.com",
+
+    "position": "Software Engineer",
+
+    "department": "IT",
+
+    "phone": "9876543210",
+
+    "address": "Pune, Maharashtra"
+
+  },
+
+  {
+
+    "name": "Rohan Mehta",
+
+    "email": "rohan.mehta@example.com",
+
+    "position": "HR Executive",
+
+    "department": "HR",
+
+    "phone": "8765432109",
+
+    "address": "Delhi"
+
+  },
+
+  {
+
+    "name": "Priya Singh",
+
+    "email": "priya.singh@example.com",
+
+    "position": "Sales Manager",
+
+    "department": "Sales",
+
+    "phone": "9123456780",
+
+    "address": "Bangalore"
+
+  },
+
+  {
+
+    "name": "Vikram Jain",
+
+    "email": "vikram.jain@example.com",
+
+    "position": "Marketing Analyst",
+
+    "department": "Marketing",
+
+    "phone": "9988776655",
+
+    "address": "Jaipur"
+
+  },
+
+  {
+
+    "name": "Kavya Rao",
+
+    "email": "kavya.rao@example.com",
+
+    "position": "Finance Officer",
+
+    "department": "Finance",
+
+    "phone": "9090909090",
+
+    "address": "Hyderabad"
+
+  },
+
+  {
+
+    "name": "Anuj Patel",
+
+    "email": "anuj.patel@example.com",
+
+    "position": "System Admin",
+
+    "department": "IT",
+
+    "phone": "9345612789",
+
+    "address": "Ahmedabad"
+
+  },
+
+  {
+
+    "name": "Nikita Verma",
+
+    "email": "nikita.verma@example.com",
+
+    "position": "Recruiter",
+
+    "department": "HR",
+
+    "phone": "9876512345",
+
+    "address": "Noida"
+
+  },
+
+  {
+
+    "name": "Siddharth Kulkarni",
+
+    "email": "siddharth.k@example.com",
+
+    "position": "Accountant",
+
+    "department": "Finance",
+
+    "phone": "9234567890",
+
+    "address": "Nashik"
+
+  },
+
+  {
+
+    "name": "Meena Das",
+
+    "email": "meena.das@example.com",
+
+    "position": "Sales Executive",
+
+    "department": "Sales",
+
+    "phone": "9345098761",
+
+    "address": "Kolkata"
+
+  },
+
+  {
+
+    "name": "Aman Gupta",
+
+    "email": "aman.gupta@example.com",
+
+    "position": "Backend Developer",
+
+    "department": "IT",
+
+    "phone": "9876001122",
+
+    "address": "Chandigarh"
+
+  },
+
+  {
+
+    "name": "Neha Bansal",
+
+    "email": "neha.bansal@example.com",
+
+    "position": "HR Intern",
+
+    "department": "HR",
+
+    "phone": "9012345678",
+
+    "address": "Lucknow"
+
+  },
+
+  {
+
+    "name": "Yash Deshmukh",
+
+    "email": "yash.d@example.com",
+
+    "position": "UI/UX Designer",
+
+    "department": "Marketing",
+
+    "phone": "9823456123",
+
+    "address": "Mumbai"
+
+  },
+
+  {
+
+    "name": "Sneha Nair",
+
+    "email": "sneha.nair@example.com",
+
+    "position": "Project Coordinator",
+
+    "department": "Admin",
+
+    "phone": "9301234567",
+
+    "address": "Thiruvananthapuram"
+
+  },
+
+  {
+
+    "name": "Arjun Reddy",
+
+    "email": "arjun.reddy@example.com",
+
+    "position": "Product Manager",
+
+    "department": "IT",
+
+    "phone": "9955332211",
+
+    "address": "Vijayawada"
+
+  },
+
+  {
+
+    "name": "Ritika Agarwal",
+
+    "email": "ritika.agarwal@example.com",
+
+    "position": "Data Analyst",
+
+    "department": "Finance",
+
+    "phone": "9363521890",
+
+    "address": "Patna"
+
+  },
+
+  {
+
+    "name": "Manoj Das",
+
+    "email": "manoj.das@example.com",
+
+    "position": "Sales Head",
+
+    "department": "Sales",
+
+    "phone": "9087654321",
+
+    "address": "Bhubaneswar"
+
+  },
+
+  {
+
+    "name": "Shruti Joshi",
+
+    "email": "shruti.joshi@example.com",
+
+    "position": "Marketing Lead",
+
+    "department": "Marketing",
+
+    "phone": "9098123456",
+
+    "address": "Indore"
+
+  },
+
+  {
+
+    "name": "Rajeev Sinha",
+
+    "email": "rajeev.sinha@example.com",
+
+    "position": "Admin Executive",
+
+    "department": "Admin",
+
+    "phone": "9223344556",
+
+    "address": "Ranchi"
+
+  },
+
+  {
+
+    "name": "Tanvi Kapoor",
+
+    "email": "tanvi.kapoor@example.com",
+
+    "position": "Business Analyst",
+
+    "department": "IT",
+
+    "phone": "9112233445",
+
+    "address": "Dehradun"
+
+  },
+
+  {
+
+    "name": "Harsh Vardhan",
+
+    "email": "harsh.v@example.com",
+
+    "position": "Operations Manager",
+
+    "department": "Admin",
+
+    "phone": "9887766554",
+
+    "address": "Nagpur"
+
+  }
+
+]
+
