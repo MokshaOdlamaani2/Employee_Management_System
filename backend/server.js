@@ -5,13 +5,15 @@ require('dotenv').config();
 
 const app = express();
 
-const allowedOriginPattern = /^https:\/\/employee-management-system-azure-eight\.vercel\.app(\/.*)?$/;
+// ✅ Allow your actual frontend URL
+const allowedOriginPattern = /^https:\/\/employee-management-system-gamma-sandy\.vercel\.app(\/.*)?$/;
 
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOriginPattern.test(origin)) {
       callback(null, true);
     } else {
+      console.error('❌ Blocked by CORS:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
