@@ -9,15 +9,10 @@ const allowedOriginPattern = /^https:\/\/employee-management-system-azure-eight\
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) {
-      // Allow non-browser clients like Postman or curl
-      return callback(null, true);
-    }
-
-    if (allowedOriginPattern.test(origin)) {
-      return callback(null, true);
+    if (!origin || allowedOriginPattern.test(origin)) {
+      callback(null, true);
     } else {
-      return callback(new Error('Not allowed by CORS'), false);
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
@@ -25,17 +20,13 @@ app.use(cors({
 
 app.use(express.json());
 
-// Connect DB and start server
-connectDB()
-  .then(() => {
-    app.use('/api/employees', require('./routes/employeeRoutes'));
-    app.use('/api/auth', require('./routes/authRoutes'));
+// ✅ API routes mounted under /api
+app.use('/api/employees', require('./routes/employeeRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
 
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT}`);
-    });
-  })
-  .catch(err => {
-    console.error('❌ Failed to connect to database:', err);
-  });
+connectDB().then(() => {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+}).catch(err => {
+  console.error('❌ Failed to connect to database:', err);
+});

@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api', // ✅ includes /api
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -13,7 +13,6 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// Auto-logout on 401
 axiosInstance.interceptors.response.use(
   (res) => res,
   (error) => {

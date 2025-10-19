@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const protect = require('../middleware/authMiddleware');
-const Employee = require('../models/Employee'); // ✅ don't forget this import
+const Employee = require('../models/Employee');
 
 const {
   getEmployees,
@@ -10,13 +10,13 @@ const {
   deleteEmployee
 } = require('../controllers/employeeController');
 
-router.get('/', protect, getEmployees);
-router.post('/', protect, createEmployee);
-router.put('/:id', protect, updateEmployee);
-router.delete('/:id', protect, deleteEmployee);
+// 🔐 All routes protected by `authMiddleware`
+router.get('/', protect, getEmployees);            // GET all employees
+router.post('/', protect, createEmployee);         // POST single employee
+router.put('/:id', protect, updateEmployee);       // PUT (update) employee
+router.delete('/:id', protect, deleteEmployee);    // DELETE employee
 
-
-// ✅ This route should also use `protect`
+// ✅ BULK INSERT route
 router.post('/bulk', protect, async (req, res) => {
   try {
     const inserted = await Employee.insertMany(req.body);
@@ -25,6 +25,5 @@ router.post('/bulk', protect, async (req, res) => {
     res.status(500).json({ message: 'Bulk insert failed', error: err.message });
   }
 });
-
 
 module.exports = router;
