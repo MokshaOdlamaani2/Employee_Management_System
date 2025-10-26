@@ -5,29 +5,33 @@ const cors = require('cors');
 
 const app = express();
 
-// CORS
-const allowedOrigins = [
-  'http://localhost:5173', // your React dev server
-  'https://your-production-frontend.vercel.app',
-];
+// ✅ Load FRONTEND_URL from .env
+const allowedOrigin = process.env.FRONTEND_URL;
 
+// ✅ Configure CORS dynamically
 app.use(cors({
   origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    return callback(new Error('Not allowed by CORS'));
+
+    if (origin === allowedOrigin) {
+      return callback(null, true);
+    } else {
+      console.warn(`❌ CORS blocked for origin: ${origin}`);
+      return callback(new Error('Not allowed by CORS'));
+    }
   },
   credentials: true,
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 
 app.use(express.json());
 
-// Routes
+// ✅ Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/employees', require('./routes/employeeRoutes'));
 
-// Connect DB & start server
+// ✅ Connect DB & start server
 connectDB().then(() => {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
