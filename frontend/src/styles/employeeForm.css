@@ -1,22 +1,205 @@
+/* -------------------- Base Layout -------------------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2e2e2e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-size: 16px;
+  background: #f9fafb;
+}
+
+.page-content {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  padding: 20px;
+  margin: 0 auto;
+  background: #f9fafb;
+  max-width: 1200px;
+}
+
+h1 {
+  text-align: center;
+  color: #1b1b1b;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* -------------------- Employee List & Card Layout -------------------- */
+.employee-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.employee-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.employee-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.employee-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* -------------------- Employee Card -------------------- */
+.card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #111827;
+}
+
+.card p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #374151;
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.card-actions button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+.card-actions button:hover {
+  transform: translateY(-2px);
+}
+
+.card-actions button[title="Delete"] {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.card-actions button[title="Delete"]:hover {
+  background-color: #dc2626;
+}
+
+.card-actions button[title="Edit"] {
+  background-color: #fbbf24;
+  color: #92400e;
+}
+
+.card-actions button[title="Edit"]:hover {
+  background-color: #f59e0b;
+  color: #78350f;
+}
+
+.card-actions button[title="View"] {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.card-actions button[title="View"]:hover {
+  background-color: #2563eb;
+}
+
+/* -------------------- Employee Info Card -------------------- */
+.employee-info-card {
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeSlideDown 0.3s ease;
+}
+
+.employee-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.employee-info-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1e3a8a;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #dc2626;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -------------------- Employee Form -------------------- */
 .employee-form-wrapper {
   max-width: 900px;
   margin: 40px auto;
   padding: 0 20px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .employee-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px 32px;
-  padding: 40px;
-
-}
-
-/* Responsive: single column for mobile */
-@media (max-width: 768px) {
-  .employee-form {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px 25px;
+  padding: 30px 20px;
 }
 
 .employee-form-group {
@@ -27,38 +210,43 @@
 
 .employee-form-group label {
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 600;
   color: #334155;
 }
 
 .employee-form-group input,
-.employee-form-group select {
-  padding: 16px 18px;
-  font-size: 17px;
-  font-weight: 600;
+.employee-form-group select,
+.employee-form-group textarea {
+  padding: 14px 16px;
+  font-size: 16px;
+  font-weight: 500;
   color: #0f172a;
   background-color: #f8fafc;
   border: 2px solid #cbd5e1;
   border-radius: 12px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.employee-form-group input::placeholder {
+.employee-form-group input::placeholder,
+.employee-form-group textarea::placeholder {
   color: #94a3b8;
   font-style: italic;
 }
 
 .employee-form-group input:focus,
-.employee-form-group select:focus {
+.employee-form-group select:focus,
+.employee-form-group textarea:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
   outline: none;
 }
 
 .employee-submit-btn {
-  grid-column: span 2;
-  padding: 18px;
-  font-size: 18px;
+  grid-column: 1/-1;
+  padding: 16px;
+  font-size: 16px;
   font-weight: bold;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: white;
@@ -67,6 +255,7 @@
   box-shadow: 0 6px 18px rgba(59, 130, 246, 0.3);
   cursor: pointer;
   transition: background 0.35s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  text-align: center;
 }
 
 .employee-submit-btn:hover {
@@ -78,4 +267,107 @@
 .employee-submit-btn:active {
   transform: translateY(0);
   box-shadow: 0 5px 12px rgba(30, 58, 138, 0.4);
+}
+
+/* -------------------- Responsive -------------------- */
+/* -------------------- Desktop / Large Screen Enhancements -------------------- */
+@media (min-width: 1025px) {
+  /* Wider form wrapper */
+  .employee-form-wrapper {
+    max-width: 1400px;
+    padding: 50px 60px;
+  }
+
+  /* 2-column layout for form fields */
+  .employee-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px 40px;
+    padding: 50px 40px;
+  }
+
+  .employee-form-group label {
+    font-size: 18px;
+  }
+
+  .employee-form-group input,
+  .employee-form-group select,
+  .employee-form-group textarea {
+    padding: 16px 20px;
+    font-size: 17px;
+  }
+
+  .employee-submit-btn {
+    padding: 18px 24px;
+    font-size: 18px;
+  }
+
+  /* Employee cards: 2 per row */
+  .employee-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 30px;
+  }
+}
+
+/* Very large screens: 3 cards per row */
+@media (min-width: 1600px) {
+  .employee-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* -------------------- Tablet / Mobile -------------------- */
+@media (max-width: 1024px) {
+  .employee-form {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-form {
+    grid-template-columns: 1fr;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 15px 10px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+
+  .employee-form-wrapper {
+    margin: 20px 10px;
+    padding: 0;
+  }
+
+  .employee-form {
+    padding: 20px;
+    gap: 16px 20px;
+  }
+
+  .employee-submit-btn {
+    grid-column: span 1;
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .card h3 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

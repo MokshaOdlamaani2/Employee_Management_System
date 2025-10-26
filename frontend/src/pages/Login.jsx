@@ -1,57 +1,50 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
-import axios from '../utils/axiosInstance'; // ✅ use custom axios
-import { useNavigate } from 'react-router-dom';
-import '../styles/login.css';
+import axios from '../utils/axiosInstance';
+import '../styles/Login.css';
 
 const Login = ({ setLoggedIn }) => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      localStorage.removeItem('token');
-      const res = await axios.post('/auth/login', form); // ✅ simplified
-
+      const res = await axios.post('/auth/login', { email, password });
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('role', res.data.role); // ✅ backend must return this
       setLoggedIn(true);
-      navigate('/dashboard');
+      setError('');
+      alert('✅ Login successful!');
     } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong. Try again.');
+      setError(err.response?.data?.message || '❌ Invalid credentials');
     }
   };
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-        <h2> Admin Login</h2>
+        <h2>Admin Login</h2>
+
         <input
           type="email"
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
+          placeholder="Email: admin@gmail.com"
           className="login-input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
         />
+
         <input
           type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
+          placeholder="Password: admin123"
           className="login-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
         />
+
         <button type="submit" className="login-btn">Login</button>
-        {error && <p className="login-error">{error}</p>}
+        {error && <div className="login-error">{error}</div>}
       </form>
     </div>
   );

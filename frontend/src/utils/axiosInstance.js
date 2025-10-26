@@ -1,29 +1,29 @@
-// utils/axiosInstance.js
 import axios from 'axios';
 
+const baseURL = import.meta.env.PROD 
+  ? import.meta.env.VITE_API_URL_PROD
+  : import.meta.env.VITE_API_URL_LOCAL;
+
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL,
+  withCredentials: true,
 });
 
-// Add auth token to every request if exists
-axiosInstance.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
-// Handle 401 errors
 axiosInstance.interceptors.response.use(
   res => res,
-  error => {
-    if (error.response?.status === 401) {
+  err => {
+    if (err.response?.status === 401) {
       alert('Session expired. Please login again.');
       localStorage.removeItem('token');
       window.location.href = '/login';
     }
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
 

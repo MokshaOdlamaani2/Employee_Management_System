@@ -9,8 +9,8 @@ body {
   display: block;
   overflow-x: hidden;
   overflow-y: auto;
-  font-size: 18px;
-  background: #fff; /* ✅ clean white background */
+  font-size: 16px;
+  background: #fff;
 }
 
 .page-content {
@@ -18,7 +18,7 @@ body {
   min-height: calc(100vh - 80px);
   padding: 20px;
   margin: 0;
-  background: #fff; /* ✅ remove any inherited background */
+  background: #fff;
 }
 
 h1 {
@@ -34,27 +34,58 @@ h1 {
 /* -------------------- Employee Card Layout -------------------- */
 .employee-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 28px;
-  max-height: 1000px;
-  width: 1600px;
-  overflow-y: auto;
-  padding: 20px 0;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 10px 0;
 }
 
-/* ✅ Removed gradient-colored scrollbars */
 .employee-list::-webkit-scrollbar-track,
 .employee-list::-webkit-scrollbar-thumb,
 .employee-list::-webkit-scrollbar-thumb:hover {
   background: transparent;
   box-shadow: none;
 }
+.analytics-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px;
+}
+
+.chart-box {
+  flex: 1 1 100%; /* full width on mobile */
+  max-width: 500px; /* optional max width for large screens */
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 768px) {
+  .chart-box {
+    flex: 1 1 48%; /* two charts side by side on tablet+ */
+  }
+  .chart-box h3 {
+    font-size: 1rem; /* smaller font for mobile */
+  }
+}
+.chart-box h3 {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 1.25rem; /* default size */
+}
+
+
 
 /* -------------------- Card Styling -------------------- */
 .card {
   background: #ffffff;
-  padding: 30px 28px 32px;
-  border-radius: 20px;
+  padding: 20px;
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid #e2e8f0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -70,27 +101,26 @@ h1 {
 }
 
 .card h3 {
-  margin: 0 0 14px;
+  margin: 0 0 12px;
   font-weight: 700;
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   color: #111827;
 }
 
 .card p {
   margin: 8px 0;
-  font-size: 17px;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: #374151;
   flex-grow: 1;
 }
 
-/* Button styles unchanged */
 .card button {
-  margin-top: 22px;
-  padding: 12px 18px;
+  margin-top: 18px;
+  padding: 10px 14px;
   border: none;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
@@ -118,26 +148,82 @@ h1 {
 
 .card-actions {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: 16px;
+}
+
+@media (max-width: 480px) {
+  .card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+/* Update/Edit Form Container */
+.update-container {
+  max-width: 700px;
+  margin: 20px auto 40px;
+  padding: 24px 32px;
+  background: #f9fafb;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  animation: fadeSlideDown 0.3s ease;
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.update-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1e3a8a;
+}
+
+.update-header .close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #dc2626;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.update-header .close-btn:hover {
+  transform: scale(1.2);
+}
+
+/* Entry animation for smooth appear */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* -------------------- Dashboard Metrics -------------------- */
 .dashboard-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 20px;
   margin: 40px 0 50px;
   justify-content: space-around;
 }
 
 .metric-card {
-  background-color: #ffffff; /* ✅ remove grayish bg */
-  padding: 28px 32px;
+  background-color: #ffffff;
+  padding: 24px 28px;
   border-radius: 20px;
   font-weight: 800;
-  font-size: 22px;
+  font-size: 20px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
   flex: 1 1 30%;
   text-align: center;
@@ -148,7 +234,7 @@ h1 {
 /* -------------------- Filter Bar -------------------- */
 .filter-bar {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   margin-bottom: 28px;
   justify-content: space-between;
   align-items: center;
@@ -158,26 +244,44 @@ h1 {
 .filter-bar input,
 .filter-bar select {
   flex: 1 1 100%;
-  min-width: 300px;
-  padding: 16px 20px;
-  font-size: 18px;
-  border-radius: 14px;
-  border: 2px solid #cbd5e1;
-  background-color: #fff; /* ✅ pure white */
-  color: #334155;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  min-width: 200px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background-color: #f9fafb;
+  color: #475569;
+  box-shadow: inset 0 1px 2px rgba(100, 116, 139, 0.1);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .filter-bar input:focus,
 .filter-bar select:focus {
   border-color: #3b82f6;
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
   background-color: #fff;
   outline: none;
 }
 
-.login-fullcontainer {
-  background: #ffffff !important; /* ✅ remove light blue login bg */
+/* Search with icon */
+.search-group {
+  position: relative;
+  flex: 0 0 75%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #64748b;
+  pointer-events: none;
+}
+
+.search-group input {
+  width: 100%;
+  padding-left: 34px;
 }
 
 /* -------------------- Export Buttons -------------------- */
@@ -209,6 +313,12 @@ h1 {
   transform: translateY(-2px);
 }
 
+.export-btn:active,
+.pdf-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.45);
+}
+
 /* -------------------- Floating Info Card -------------------- */
 .employee-info-card {
   background: #ffffff;
@@ -224,96 +334,6 @@ h1 {
   animation: fadeSlideDown 0.3s ease;
 }
 
-/* Other styles retained... */
-
-/* Responsive tweaks remain unchanged */
-
-.export-btn:active,
-.pdf-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.45);
-}
-.filter-bar {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 28px;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* 👇 Group for search input with icon */
-.search-group {
-  position: relative;
-  flex: 0 0 75%;
-}
-
-.search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #64748b;
-  pointer-events: none;
-}
-
-.search-group input {
-  width: 100%;
-  padding: 12px 16px;
-  padding-left: 34px;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 1.5px solid #cbd5e1;
-  background-color: #f9fafb;
-  color: #475569;
-  box-shadow: inset 0 1px 2px rgba(100, 116, 139, 0.1);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.search-group input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-  background-color: #fff;
-  outline: none;
-}
-
-/* 👇 Department dropdown styling */
-.filter-bar select {
-  flex: 0 0 20%;
-  padding: 12px 16px;
-  font-size: 16px;
-  border-radius: 12px;
-  border: 1.5px solid #cbd5e1;
-  background-color: #f9fafb;
-  color: #475569;
-  box-shadow: inset 0 1px 2px rgba(100, 116, 139, 0.1);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.filter-bar select:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-  background-color: #fff;
-  outline: none;
-}
-
-/* Floating info card above list */
-.employee-info-card {
-  background: #ffffff;
-  border: 2px solid #cbd5e1;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  padding: 24px 32px;
-  margin-bottom: 40px;
-  position: relative;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  animation: fadeSlideDown 0.3s ease;
-}
-
-/* Header with close button */
 .employee-info-header {
   display: flex;
   justify-content: space-between;
@@ -353,30 +373,120 @@ h1 {
 }
 
 /* -------------------- Responsive Tweaks -------------------- */
-@media (max-width: 768px) {
-  .form input {
-    flex: 1 1 100%;
+@media (min-width: 1025px) {
+  .page-content {
+    padding: 40px 60px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+  }
+
+
+  .employee-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Always 3 columns */
+    justify-content: center; /* Center cards if less than 3 */
+    gap: 30px;
+    max-width: 1200px; /* Optional: limit width so cards stay centered */
+    margin: 0 auto; /* Center the whole grid */
+  }
+
+
+
+  .card {
+    padding: 28px 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .card h3 {
+    font-size: 1.5rem;
+  }
+
+  .card p {
+    font-size: 1rem;
+  }
+
+  .card-actions {
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .card button {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+
+  .employee-info-card {
+    padding: 32px 40px;
+    max-width: 700px;
+  }
+
+  .employee-info-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .dashboard-metrics {
+    margin: 60px 0 70px;
+    gap: 30px;
+  }
+
+  .metric-card {
+    font-size: 22px;
+    padding: 30px 36px;
+    border-radius: 24px;
+    min-width: 280px;
+  }
+
+  .filter-bar {
+    gap: 24px;
+    margin-bottom: 36px;
   }
 
   .filter-bar input,
   .filter-bar select {
+    padding: 14px 18px;
+    font-size: 17px;
+  }
+
+  .export-bar {
+    margin: 24px 0 40px;
+  }
+
+  .export-btn,
+  .pdf-btn {
+    font-size: 16px;
+    padding: 14px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar input,
+  .filter-bar select,
+  .search-group {
     flex: 1 1 100%;
   }
 
   .export-bar {
     justify-content: center;
   }
+
+  .metric-card {
+    flex: 1 1 45%;
+    margin-bottom: 20px;
+  }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 20px 15px;
-    margin: 20px 12px;
+  .page-content {
+    padding: 15px 10px;
   }
 
   h1 {
-    font-size: 2rem;
-    margin-bottom: 30px;
+    font-size: 1.6rem;
+    margin-bottom: 25px;
   }
 
   .card {
@@ -387,10 +497,33 @@ h1 {
     font-size: 1.2rem;
   }
 
+  .card p {
+    font-size: 0.85rem;
+  }
+
   .form button,
   .export-btn,
   .pdf-btn {
-    font-size: 16px;
-    padding: 12px 18px;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .metric-card {
+    flex: 1 1 100%;
+    font-size: 18px;
+    padding: 18px;
+  }
+
+  .employee-info-card {
+    padding: 16px 20px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .search-group {
+    width: 100%;
   }
 }

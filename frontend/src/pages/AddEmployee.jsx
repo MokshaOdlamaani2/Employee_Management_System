@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from '../utils/axiosInstance';
 import EmployeeForm from '../components/EmployeeForm';
 import { useNavigate } from 'react-router-dom';
-import '../styles/app.css';
+import '../styles/employeeForm.css';
 
 const AddEmployee = () => {
   const [employees, setEmployees] = useState([]);

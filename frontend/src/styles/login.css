@@ -1,80 +1,180 @@
-
-/* Login Container */
+/* -------------------- Login Container -------------------- */
 .login-container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  width: 600px;
-  justify-content: center;
-  align-items: center;
-   background: linear-gradient(to right, #8bd2e0c0, #9db4a3e8);
+  justify-content: center; /* centers horizontally */
+  align-items: center;     /* centers vertically */
+  padding: 20px;
+ 
 }
-
-/* Login Form Box */
 .login-form {
   width: 100%;
-  max-width: 880px;
-  padding: 10px 20px;
-  border-radius: 24px;
+  max-width: 900px; /* 🔹 Increased width (was 800px) */
+  padding: 70px 60px;
+  border-radius: 28px;
+  justify-content: center; /* centers horizontally */
+  align-items: center;  
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
 }
 
 /* Heading */
 .login-form h2 {
-  margin-bottom: 30px;
-  font-size: 26px;
-  font-weight: bold;
+  margin-bottom: 40px;
+  font-size: 34px;
+  font-weight: 700;
   color: #1e293b;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* Input Fields */
 .login-input {
   width: 100%;
-  padding: 18px 20px;
-  margin: 14px 0;
-  font-size: 17px;
-  font-weight: bold;
+  padding: 20px 22px;
+  margin: 15px 0;
+  font-size: 18px;
+  font-weight: 500;
   border: 2px solid #cbd5e1;
-  border-radius: 12px;
+  border-radius: 14px;
   background-color: #f8fafc;
   color: #0f172a;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-input::placeholder {
-  font-weight: 500;
   color: #94a3b8;
+  font-style: italic;
 }
 
 .login-input:focus {
   border-color: #0284c7;
+  box-shadow: 0 0 12px rgba(2, 132, 199, 0.35);
   outline: none;
+}
+/* Add icons inside inputs */
+.login-input {
+  background-repeat: no-repeat;
+  background-position: 14px center;
+  background-size: 20px;
+  padding-left: 45px; /* space for icon */
+}
+
+/* 👤 Email icon */
+.login-input[type="email"] {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/847/847969.png');
+}
+
+/* 🔒 Password icon */
+.login-input[type="password"] {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3064/3064197.png');
 }
 
 /* Submit Button */
 .login-btn {
   width: 100%;
-  padding: 16px;
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+  padding: 18px;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 700;
   background-color: #0284c7;
   color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
 }
 
 .login-btn:hover {
   background-color: #0369a1;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(3, 105, 161, 0.4);
 }
 
-/* Error Text */
+.login-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 14px rgba(3, 105, 161, 0.35);
+}
+
+/* Error Message */
 .login-error {
   color: #dc2626;
-  margin-top: 20px;
-  font-size: 15px;
+  margin-top: 18px;
+  font-size: 16px;
   text-align: center;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 992px) {
+  .login-form {
+    max-width: 700px;
+    padding: 60px 40px;
+  }
+
+  .login-form h2 {
+    font-size: 28px;
+  }
+
+  .login-input {
+    font-size: 17px;
+    padding: 16px 18px;
+  }
+
+  .login-btn {
+    font-size: 18px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-form {
+    max-width: 90%;
+    padding: 40px 30px;
+  }
+
+  .login-form h2 {
+    font-size: 26px;
+  }
+
+  .login-input {
+    font-size: 16px;
+    padding: 15px 16px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    max-width: 95%;
+    padding: 30px 20px;
+  }
+
+  .login-form h2 {
+    font-size: 22px;
+  }
+
+  .login-input {
+    font-size: 15px;
+    padding: 13px 15px;
+  }
+
+  .login-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
 }

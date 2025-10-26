@@ -1,34 +1,34 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 
-// ✅ Allow your actual frontend URL
-const allowedOriginPattern = /^https:\/\/employee-management-system-gamma-sandy\.vercel\.app(\/.*)?$/;
+// CORS
+const allowedOrigins = [
+  'http://localhost:5173', // your React dev server
+  'https://your-production-frontend.vercel.app',
+];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOriginPattern.test(origin)) {
-      callback(null, true);
-    } else {
-      console.error('❌ Blocked by CORS:', origin);
-      callback(new Error('Not allowed by CORS'));
-    }
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
 }));
 
 app.use(express.json());
 
-// ✅ API routes mounted under /api
-app.use('/api/employees', require('./routes/employeeRoutes'));
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/employees', require('./routes/employeeRoutes'));
 
+// Connect DB & start server
 connectDB().then(() => {
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-}).catch(err => {
-  console.error('❌ Failed to connect to database:', err);
+  app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
 });
