@@ -25,8 +25,9 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 
-// ✅ Handle preflight requests
-app.options('*', cors());
+// Handle preflight requests
+app.options('/*', cors());
+
 
 // ✅ Body parser
 app.use(express.json());
