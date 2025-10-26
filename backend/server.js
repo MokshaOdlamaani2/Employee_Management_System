@@ -6,46 +6,39 @@ const path = require('path');
 
 const app = express();
 
-// ✅ Allowed origins: local dev + production frontend from .env
+// Allowed origins
 const allowedOrigins = [
-  'http://localhost:5173',        // local dev
-  process.env.FRONTEND_URL         // production frontend URL
-].filter(Boolean);                // remove undefined if FRONTEND_URL missing
+  'http://localhost:5173',
+  process.env.FRONTEND_URL
+].filter(Boolean);
 
-// ✅ CORS middleware
+// CORS
 app.use(cors({
   origin: (origin, callback) => {
-    // allow requests like Postman, curl (no origin)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    console.warn(`❌ CORS blocked for origin: ${origin}`);
     return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  methods: ['GET','POST','PUT','DELETE','OPTIONS']
 }));
 
-// Handle preflight requests
-app.options('/*', cors());
-
-
-// ✅ Body parser
+// Body parser
 app.use(express.json());
 
-// ✅ Routes
+// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/employees', require('./routes/employeeRoutes'));
 
-// ✅ Serve frontend (optional for Render)
+// Serve React in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'frontend', 'dist'))); // adjust if your frontend is built differently
-
+  app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
   });
 }
 
-// ✅ Connect to MongoDB & start server
+// Connect DB & start server
 connectDB()
   .then(() => {
     const PORT = process.env.PORT || 5000;
