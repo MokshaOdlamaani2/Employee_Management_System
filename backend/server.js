@@ -5,16 +5,21 @@ const cors = require('cors');
 
 const app = express();
 
-// ✅ Load FRONTEND_URL from .env
-const allowedOrigin = process.env.FRONTEND_URL;
+// ✅ Allowed origins: local dev + production
+const allowedOrigins = [
+  'http://localhost:5173', // local frontend dev
+  process.env.FRONTEND_URL  // production frontend from .env
+].filter(Boolean); // remove undefined if FRONTEND_URL is missing
 
-// ✅ Configure CORS dynamically
+// ✅ CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl)
-    if (!origin) return callback(null, true);
+    if (!origin) {
+      // Allow requests like curl, Postman, mobile apps
+      return callback(null, true);
+    }
 
-    if (origin === allowedOrigin) {
+    if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     } else {
       console.warn(`❌ CORS blocked for origin: ${origin}`);
@@ -25,6 +30,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 
+// ✅ Body parser
 app.use(express.json());
 
 // ✅ Routes
@@ -32,7 +38,9 @@ app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/employees', require('./routes/employeeRoutes'));
 
 // ✅ Connect DB & start server
-connectDB().then(() => {
-  const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
-});
+connectDB()
+  .then(() => {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`🚀 Backend running on port ${PORT}`));
+  })
+  .catch((err) => console.error('❌ DB connection failed:', err));
