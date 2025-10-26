@@ -8,14 +8,14 @@ const app = express();
 
 // ✅ Allowed origins
 const allowedOrigins = [
-  'http://localhost:5173',   // local dev
-  process.env.FRONTEND_URL    // production frontend
+  'http://localhost:5173',                // local dev
+  process.env.FRONTEND_URL                // production frontend
 ].filter(Boolean);
 
 // ✅ CORS middleware
 app.use(cors({
   origin: (origin, callback) => {
-    // allow requests like Postman, curl (no origin)
+    // allow requests like Postman / curl (no origin)
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) return callback(null, true);
     console.warn(`❌ CORS blocked for origin: ${origin}`);
